@@ -1,42 +1,64 @@
-# sv
+# Neuro Search
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+An interactive neuroscience search tool that maps cognitive concepts to brain regions and generates AI-powered explanations.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Concept Search**: Query cognitive concepts (e.g., "fear", "attention", "pain")
+- **Brain Region Mapping**: Displays associated brain regions from the Cognitive Atlas API
+- **3D Brain Visualization**: Interactive 3D brain viewer using Niivue with activation overlays from NeuroVault
+- **AI Explanations**: Generated using Ollama LLM to explain the neuroscience behind concept-region mappings
 
-```sh
-# create a new project
-npx sv create my-app
+## Tech Stack
+
+- **Frontend**: SvelteKit 5 with Svelte 5 runes
+- **3D Viewer**: Niivue for brain visualization
+- **Backend**: SvelteKit API routes
+- **External APIs**:
+  - [Cognitive Atlas](https://www.cognitiveatlas.org/) - Brain region associations
+  - [NeuroVault](https://neurovault.org/) - Brain activation maps
+  - [Ollama](https://ollama.ai/) - LLM for generating explanations
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- Ollama running locally (for AI explanations)
+
+### Installation
+
+```bash
+npm install
 ```
 
-To recreate this project with the same configuration:
+### Development
 
-```sh
-# recreate this project
-npx sv@0.13.0 create --template minimal --types ts --add prettier eslint vitest="usages:unit,component" playwright tailwindcss="plugins:typography,forms" sveltekit-adapter="adapter:auto" devtools-json --install npm neuro-search
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
+```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+### Build
 
-To create a production version of your app:
-
-```sh
+```bash
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+## Usage
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+1. Start the dev server: `npm run dev`
+2. Open http://localhost:5173
+3. Enter a cognitive concept (e.g., "fear", "attention", "pain")
+4. View brain regions and AI-generated explanation
+5. Explore the 3D brain visualization with activation overlays
+
+## Project Structure
+
+```
+src/
+├── routes/
+│   ├── +page.svelte          # Main UI
+│   └── api/decode/+server.js # Search API endpoint
+└── static/
+    └── mni152.nii.gz          # MNI brain template
+```
